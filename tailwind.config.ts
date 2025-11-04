@@ -10,9 +10,18 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
-        headline: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+        body: ['"Noto Sans"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+        headline: ['"Noto Sans"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
         code: ['monospace'],
+        deva: ['"Noto Sans Devanagari"', 'sans-serif'],
+        beng: ['"Noto Sans Bengali"', 'sans-serif'],
+        gujr: ['"Noto Sans Gujarati"', 'sans-serif'],
+        taml: ['"Noto Sans Tamil"', 'sans-serif'],
+        telu: ['"Noto Sans Telugu"', 'sans-serif'],
+        knda: ['"Noto Sans Kannada"', 'sans-serif'],
+        guru: ['"Noto Sans Gurmukhi"', 'sans-serif'],
+        orya: ['"Noto Sans Oriya"', 'sans-serif'],
+        mlym: ['"Noto Sans Malayalam"', 'sans-serif'],
       },
       colors: {
         background: 'hsl(var(--background))',
