@@ -243,7 +243,130 @@ const translations = {
     schemes_title: "🏛️ सरकारी योजना सहायक",
     schemes_available_text: "आपके लिए 3 नई योजनाएं उपलब्ध हैं"
   },
+  bn: {
+    nav_home: "বাড়ি",
+    nav_trade: "ব্যবসা",
+    nav_sauda: "আমার সৌদা",
+    nav_community: "সম্প্রদায়",
+    nav_ai: "স্মার্ট এআই",
+  },
+  gu: {
+    nav_home: "ઘર",
+    nav_trade: "વેપાર",
+    nav_sauda: "મારો સોદો",
+    nav_community: "સમુદાય",
+    nav_ai: "સ્માર્ટ એઆઈ",
+  },
+  mr: {
+    nav_home: "घर",
+    nav_trade: "व्यापार",
+    nav_sauda: "माझा सौदा",
+    nav_community: "समुदाय",
+    nav_ai: "स्मार्ट एआय",
+  },
+  ta: {
+    nav_home: "வீடு",
+    nav_trade: "வர்த்தகம்",
+    nav_sauda: "எனது சவுதா",
+    nav_community: "சமூகம்",
+    nav_ai: "ஸ்மார்ட் AI",
+  },
+  te: {
+    nav_home: "ఇల్లు",
+    nav_trade: "వ్యాపారం",
+    nav_sauda: "నా సౌదా",
+    nav_community: "సంఘం",
+    nav_ai: "స్మార్ట్ AI",
+  },
+  kn: {
+    nav_home: "ಮನೆ",
+    nav_trade: "ವ್ಯಾಪಾರ",
+    nav_sauda: "ನನ್ನ ಸೌದಾ",
+    nav_community: "ಸಮುದಾಯ",
+    nav_ai: "ಸ್ಮಾರ್ಟ್ ಎಐ",
+  },
+  pa: {
+    nav_home: "ਘਰ",
+    nav_trade: "ਵਪਾਰ",
+    nav_sauda: "ਮੇਰਾ ਸੌਦਾ",
+    nav_community: "ਭਾਈਚਾਰਾ",
+    nav_ai: "ਸਮਾਰਟ ਏਆਈ",
+  },
+  or: {
+    nav_home: "ଘର",
+    nav_trade: "ବାଣିଜ୍ୟ",
+    nav_sauda: "ମୋର ସଉଦା",
+    nav_community: "ସମ୍ପ୍ରଦାୟ",
+    nav_ai: "ସ୍ମାର୍ଟ AI",
+  },
+  ml: {
+    nav_home: "വീട്",
+    nav_trade: "വ്യാപാരം",
+    nav_sauda: "എന്റെ സൗദ",
+    nav_community: "സമൂഹം",
+    nav_ai: "സ്മാർട്ട് എഐ",
+  },
 };
+
+// To make them partial
+type RecursivePartial<T> = {
+  [P in keyof T]?:
+    T[P] extends (infer U)[] ? RecursivePartial<U>[] :
+    T[P] extends object ? RecursivePartial<T[P]> :
+    T[P];
+};
+
+type PartialTranslations = Omit<typeof translations, 'en' | 'hi'>;
+type PartialTranslationsWithAllKeys = {
+    [K in keyof PartialTranslations]: RecursivePartial<typeof translations['en']>;
+};
+
+const partialTranslations: PartialTranslationsWithAllKeys = {
+    bn: { nav_home: "বাড়ি", nav_trade: "ব্যবসা", nav_sauda: "আমার সৌদা", nav_community: "সম্প্রদায়", nav_ai: "স্মার্ট এআই" },
+    gu: { nav_home: "ઘર", nav_trade: "વેપાર", nav_sauda: "મારો સોદો", nav_community: "સમુદાય", nav_ai: "સ્માર્ટ એઆઈ" },
+    mr: { nav_home: "घर", nav_trade: "व्यापार", nav_sauda: "माझा सौदा", nav_community: "समुदाय", nav_ai: "स्मार्ट एआय" },
+    ta: { nav_home: "வீடு", nav_trade: "வர்த்தகம்", nav_sauda: "எனது சவுதா", nav_community: "சமூகம்", nav_ai: "ஸ்மார்ட் AI" },
+    te: { nav_home: "ఇల్లు", nav_trade: "వ్యాపారం", nav_sauda: "నా సౌదా", nav_community: "సంఘం", nav_ai: "స్మార్ట్ AI" },
+    kn: { nav_home: "ಮನೆ", nav_trade: "ವ್ಯಾಪಾರ", nav_sauda: "ನನ್ನ ಸೌದಾ", nav_community: "ಸಮುದಾಯ", nav_ai: "ಸ್ಮಾರ್ಟ್ ಎಐ" },
+    pa: { nav_home: "ਘਰ", nav_trade: "ਵਪਾਰ", nav_sauda: "ਮੇਰਾ ਸੌਦਾ", nav_community: "ਭਾਈਚਾਰਾ", nav_ai: "ਸਮਾਰਟ ਏਆਈ" },
+    or: { nav_home: "ଘର", nav_trade: "ବାଣିଜ୍ୟ", nav_sauda: "ମୋର ସଉଦା", nav_community: "ସମ୍ପ୍ରଦାୟ", nav_ai: "ସ୍ମାର୍ଟ AI" },
+    ml: { nav_home: "വീട്", nav_trade: "വ്യാപാരം", nav_sauda: "എന്റെ സൗദ", nav_community: "സമൂഹം", nav_ai: "സ്മാർട്ട് എഐ" },
+}
+
+
+// Fill missing keys with English fallback
+for (const langCode in partialTranslations) {
+    const lang = langCode as keyof typeof partialTranslations;
+    const langTranslations = translations[lang as keyof typeof translations] as Record<string, any>;
+    const englishTranslations = translations.en;
+
+    for (const key in englishTranslations) {
+        if (!langTranslations.hasOwnProperty(key)) {
+            langTranslations[key as TranslationKey] = englishTranslations[key as TranslationKey];
+        }
+    }
+}
+
+
+export const languages = [
+  { code: 'en', name: 'English', nativeName: 'English' },
+  { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी' },
+  { code: 'bn', name: 'Bengali', nativeName: 'বাংলা' },
+  { code: 'gu', name: 'Gujarati', nativeName: 'ગુજરાતી' },
+  { code: 'mr', name: 'Marathi', nativeName: 'मराठी' },
+  { code: 'ta', name: 'Tamil', nativeName: 'தமிழ்' },
+  { code: 'te', name: 'Telugu', nativeName: 'తెలుగు' },
+  { code: 'kn', name: 'Kannada', nativeName: 'ಕನ್ನಡ' },
+  { code: 'pa', name: 'Punjabi', nativeName: 'ਪੰਜਾਬੀ' },
+  { code: 'or', name: 'Odia', nativeName: 'ଓଡ଼ିଆ' },
+  { code: 'ml', name: 'Malayalam', nativeName: 'മലയാളം' },
+];
+
+const languageCodes = languages.map(l => l.code);
+
+export function isLanguage(lang: string): lang is Language {
+    return languageCodes.includes(lang);
+}
 
 export type Language = keyof typeof translations;
 export type TranslationKey = keyof typeof translations['en'];

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useState, useEffect, useMemo, useCallback, type ReactNode } from 'react';
-import translations, { type Language, type TranslationKey } from '@/lib/translations';
+import translations, { type Language, type TranslationKey, languages, isLanguage } from '@/lib/translations';
 
 interface SettingsContextType {
   language: Language;
@@ -15,9 +15,17 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>('en');
 
   useEffect(() => {
-    const storedLang = localStorage.getItem('farmart-lang') as Language;
-    if (storedLang && (storedLang === 'en' || storedLang === 'hi')) {
+    const storedLang = localStorage.getItem('farmart-lang');
+    if (storedLang && isLanguage(storedLang)) {
       setLanguageState(storedLang);
+    } else {
+        // Fallback to hindi if browser language is not supported
+        const browserLang = navigator.language.split('-')[0];
+        if (isLanguage(browserLang)) {
+            setLanguageState(browserLang);
+        } else {
+            setLanguageState('hi');
+        }
     }
   }, []);
 
