@@ -28,6 +28,11 @@ const translations = {
     market_trends: "Market Trends",
     farming_tips: "Farming Tips",
     loading_notifications: "Loading personalized notifications...",
+    ai_smart_suggestion_heading: "🤖 Today's Smart Suggestion",
+    ai_smart_suggestion_advice: "Lightly irrigate wheat today as per weather. AI Prediction: Time to spray in 3 days.",
+    ai_scan_crop: "📸 Scan Crop",
+    ai_price_trends: "💰 Price Trends",
+    ai_weather_plan: "🌧️ Weather Plan",
   },
   hi: {
     location: "इंदौर, मध्य प्रदेश",
@@ -58,6 +63,11 @@ const translations = {
     market_trends: "बाजार के रुझान",
     farming_tips: "खेती की सलाह",
     loading_notifications: "व्यक्तिगत सूचनाएं लोड हो रही हैं...",
+    ai_smart_suggestion_heading: "🤖 आज का स्मार्ट सुझाव",
+    ai_smart_suggestion_advice: "मौसम के अनुसार आज गेहूं में हल्की सिंचाई करें। AI Prediction: 3 दिन बाद छिड़काव का समय है।",
+    ai_scan_crop: "📸 फसल स्कैन",
+    ai_price_trends: "💰 भाव ट्रेंड",
+    ai_weather_plan: "🌧️ मौसम प्लान",
   },
 };
 

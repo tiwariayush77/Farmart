@@ -22,6 +22,11 @@ const SmartNotificationsOutputSchema = z.object({
   weatherUpdate: z.string().describe('A summary of the current weather conditions and forecast.'),
   marketTrends: z.string().describe('A summary of relevant market trends for crops in the area.'),
   farmingTips: z.string().describe('Practical farming tips relevant to the current season and location.'),
+  aiSuggestion: z.object({
+    heading: z.string().describe("Heading for the AI suggestion card."),
+    advice: z.string().describe("Context-aware farming advice."),
+    prediction: z.string().describe("AI prediction for future action."),
+  }).describe("AI powered smart suggestion for the user.")
 });
 export type SmartNotificationsOutput = z.infer<typeof SmartNotificationsOutputSchema>;
 
@@ -33,13 +38,19 @@ const prompt = ai.definePrompt({
   name: 'smartNotificationsPrompt',
   input: {schema: SmartNotificationsInputSchema},
   output: {schema: SmartNotificationsOutputSchema},
-  prompt: `You are an AI assistant providing smart notifications to farmers.
+  prompt: `You are an AI assistant providing smart notifications to farmers in India. Your responses should be in Hindi.
 
   Provide relevant weather updates, market trends, and farming tips based on the farmer's location.
 
   Location: {{{location}}}
 
-  Format the output as a JSON object with 'weatherUpdate', 'marketTrends', and 'farmingTips' fields.
+  Also provide an "AI-Powered Smart Suggestion". This should include a heading, a piece of context-aware farming advice for today, and a prediction for a future farming activity.
+  For example:
+  - Heading: "🤖 आज का स्मार्ट सुझाव"
+  - Advice: "मौसम के अनुसार आज गेहूं में हल्की सिंचाई करें।"
+  - Prediction: "AI Prediction: 3 दिन बाद छिड़काव का समय है।"
+
+  Format the output as a JSON object with 'weatherUpdate', 'marketTrends', 'farmingTips', and 'aiSuggestion' fields.
 `,
 });
 
