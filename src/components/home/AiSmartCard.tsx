@@ -1,10 +1,10 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useSettings } from "@/hooks/useSettings";
 import { getSmartNotifications, type SmartNotificationsOutput } from "@/ai/flows/smart-notifications-for-farmers";
-import { Loader2 } from "lucide-react";
 import { Skeleton } from "../ui/skeleton";
 
 export default function AiSmartCard() {

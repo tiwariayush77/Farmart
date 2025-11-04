@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -12,21 +13,32 @@ export default function SmartNotificationsCard() {
   const [notifications, setNotifications] = useState<SmartNotificationsOutput | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  const getFallbackNotifications = (): SmartNotificationsOutput => ({
+    weatherUpdate: t('weather_update'),
+    marketTrends: t('market_trends'),
+    farmingTips: t('farming_tips'),
+    aiSuggestion: {
+      heading: t('ai_smart_suggestion_heading'),
+      advice: t('ai_smart_suggestion_advice').split(' AI Prediction:')[0],
+      prediction: 'AI Prediction:' + t('ai_smart_suggestion_advice').split(' AI Prediction:')[1],
+    },
+  });
+
   useEffect(() => {
     async function fetchNotifications() {
       try {
         setIsLoading(true);
-        // Location is hardcoded as per the prompt's header
         const data = await getSmartNotifications({ location: "Indore, MADHYA PRADESH" });
         setNotifications(data);
       } catch (error) {
         console.error("Failed to fetch smart notifications:", error);
+        setNotifications(getFallbackNotifications());
       } finally {
         setIsLoading(false);
       }
     }
     fetchNotifications();
-  }, []);
+  }, [t]);
 
   if (isLoading) {
     return (
